@@ -1,1 +1,26 @@
+\documentclass{beamer}
 
+% Choose a theme (e.g., Madrid, Metropolis, Warsaw)
+\usetheme{Madrid} 
+
+\title{Summary: Designing Markets}
+\subtitle{Handbook of Market Design - Chapter 4}
+\author{Your Name \& Partner Name}
+\date{\today}
+
+\begin{document}
+
+% Title Slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% A Content Slide
+\begin{frame}{Introduction to Market Design}
+    \begin{itemize}
+        \item Market design involves creating rules and processes.
+        \item It aims to fix market failures.
+    \end{itemize}
+\end{frame}
+
+\end{document}
