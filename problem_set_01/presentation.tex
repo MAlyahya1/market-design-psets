@@ -1,137 +1,151 @@
 \documentclass{beamer}
-\usetheme{Madrid} % Professional theme recommended in slides [cite: 302, 305]
+\usetheme{Madrid}
 \usepackage{tikz}
-
-\title{Summary: Designing Markets}
-\subtitle{Handbook of Market Design - Chapter 4}
-\author{Mohammed Alyahya}
+\usepackage{booktabs}
+\usetikzlibrary{positioning}
+\title{Designing Markets: Chapter 4 Summary}
+\subtitle{Handbook of Market Design}
+\author{Your Name \& Partner Name}
 \date{\today}
 
 \begin{document}
 
+% Slide 1: Title
 \begin{frame}
-    \titlepage % Generates the title slide [cite: 88, 247]
+    \titlepage
 \end{frame}
 
+% Slide 2: What is Market Design?
 \begin{frame}{What is Market Design?}
     \begin{itemize}
-        \item Market design is the process of creating rules and procedures for transactions.
-        \item It aims to solve specific failures in existing or new markets.
-        \item Success is measured by how well the design facilitates efficient outcomes.
+        \item Market design creates rules and procedures for transactions.
+        \item It aims to solve failures in existing or new markets.
+        \item Success is measured by efficient, fair outcomes.
     \end{itemize}
-    \vspace{1em}
-    \textbf{Example:} Auction design for spectrum allocation, school choice mechanisms, and kidney exchange programs.
-    \vspace{0.5em}
-    \textbf{Key Question:} How do we create rules that encourage participation and honest behavior?
+    \vspace{0.4em}
+    \begin{block}{Quick Example}
+        Kidney exchange programs match donors and recipients who are incompatible within pairs.
+    \end{block}
 \end{frame}
 
-% Placeholder for Exercise 1
+% Slide 3: The Three Pillars
+\begin{frame}{Three Pillars of Market Design}
+    \begin{itemize}
+        \item Thickness: Many participants at once.
+        \item Safety: Truthful participation is encouraged.
+        \item Congestion: Transactions are processed efficiently.
+    \end{itemize}
+    \vspace{0.6em}
+    \centering
+    \begin{tikzpicture}[node distance=1.2cm, every node/.style={draw, rounded corners, align=center, minimum width=3.2cm}]
+        \node (t) {Thickness};
+        \node (s) [below left=0.4cm and 0.4cm of t] {Safety};
+        \node (c) [below right=0.4cm and 0.4cm of t] {Congestion};
+        \draw[->] (t) -- (s);
+        \draw[->] (t) -- (c);
+        \draw[<->] (s) -- (c);
+    \end{tikzpicture}
+\end{frame}
+
+% Slide 4: Diagnosing Market Failures
 \begin{frame}{Diagnosing Market Failures}
     \begin{itemize}
-        \item Initial thoughts on congestion and thickness.
-        \item Why do some markets fail to attract enough participants?
-        \item What happens when too many transactions occur at once?
+        \item Failures often result from poor timing or rules.
+        \item Congestion and lack of thickness are common issues.
+        \item Example: Residency match programs before redesign.
     \end{itemize}
-    \vspace{1em}
-    \textbf{Example:} Residency match programs before redesign suffered from congestion and lack of thickness.
+    \vspace{0.4em}
+    \begin{block}{Symptoms}
+        Early contracting, thin participation, and strategic misreporting.
+    \end{block}
+    \vspace{0.2em}
+    \centering
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        Symptom & Likely Cause \\
+        \midrule
+        Early offers & Timing pressure \\
+        Low participation & Thin market \\
+        Strategic ranking & Unsafe rules \\
+        \bottomrule
+    \end{tabular}
 \end{frame}
 
-\begin{frame}{Diagnosing Market Failures (Exercise 1 Placeholder)}
-    \textbf{Diagnosing Market Failures}\\[1em]
+% Slide 5: Real-World Applications
+\begin{frame}{Real-World Applications}
     \begin{itemize}
-        \item Markets fail when they lack thickness or become too congested to function.
+        \item Medical residency matches (NRMP)
+        \item Public school choice systems
+        \item Kidney exchanges
     \end{itemize}
-    \vspace{1em}
-    % Example Venn diagram for market failures
-    \begin{center}
-    \begin{tikzpicture}
-        \draw[fill=blue!20, opacity=0.5] (0,0) circle (1.2);
-        \draw[fill=red!20, opacity=0.5] (1.2,0) circle (1.2);
-        \node at (-0.8,0.9) {Thickness};
-        \node at (2,0.9) {Congestion};
-        \node at (0.6,-0.7) {Failures};
+    \vspace{0.6em}
+    \centering
+    \begin{tikzpicture}[every node/.style={draw, circle, minimum size=1.2cm, align=center}]
+        \node (a) {NRMP};
+        \node (b) [right=1.6cm of a] {Schools};
+        \node (c) [right=1.6cm of b] {Kidney\\Exch.};
+        \draw[->] (a) -- (b);
+        \draw[->] (b) -- (c);
     \end{tikzpicture}
-    \end{center}
 \end{frame}
 
-\begin{frame}{The Challenge of Thickness}
-    \textbf{Achieving Market Thickness}\\[1em]
+% Slide 6: Evaluating and Comparing Designs
+\begin{frame}{Evaluating and Comparing Designs}
     \begin{itemize}
-        \item A "thick" market has many potential matches at the same time.
-        \item Designers must encourage participation and prevent "early" or "exploding" offers that thin out the market.
-        \item Coordination of timing is crucial for maximizing options.
+        \item Mechanism stability and outcome efficiency are key.
+        \item Stable designs prevent market unraveling.
+        \item Efficiency ensures resources are well allocated.
     \end{itemize}
-    \vspace{1em}
-    \textbf{Example:} School admissions deadlines and centralized matching increase thickness.
+    \vspace{0.4em}
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        Criterion & Stable? & Efficient? \\
+        \midrule
+        Deferred Acceptance & Yes & Yes \\
+        First-come-first-served & No & No \\
+        \bottomrule
+    \end{tabular}
 \end{frame}
 
-\begin{frame}{Managing Congestion}
-    \textbf{Overcoming Congestion}\\[1em]
+% Slide 7: Mechanism Stability
+\begin{frame}{Mechanism Stability}
     \begin{itemize}
-        \item Congestion occurs when there is not enough time for participants to evaluate all offers.
-        \item Designing rules to handle the volume of transactions is critical for stability.
-        \item Automated systems and clear deadlines help reduce congestion.
+        \item A matching is stable if no pair prefers each other over current matches.
+        \item Stability is crucial for long-term market health.
     \end{itemize}
-    \vspace{1em}
-    \textbf{Example:} Electronic trading platforms in financial markets speed up transactions and reduce bottlenecks.
+    \vspace{0.4em}
+    \begin{block}{Why it matters}
+        Instability encourages participants to bypass the mechanism.
+    \end{block}
 \end{frame}
 
-\begin{frame}{Making Markets Safe}
-    \textbf{Strategic Safety and Incentives}\\[1em]
-    \begin{itemize}
-        \item Participants should not be penalized for being "honest" about their preferences.
-        \item Stable matching mechanisms (like Gale-Shapley) help ensure safety and commitment.
-        \item Incentive compatibility is key for trust in the market.
-    \end{itemize}
-    \vspace{1em}
-    % Example matching diagram for safety
-    \begin{center}
-    \begin{tikzpicture}[scale=1]
-        \foreach \i in {1,...,3} {
-            \node[circle,draw,fill=blue!20] (A\i) at (0,\i) {A\i};
-            \node[circle,draw,fill=red!20] (B\i) at (3,\i) {B\i};
-            \draw[thick] (A\i) -- (B\i);
-        }
-    \end{tikzpicture}
-    \end{center}
-    \vspace{0.5em}
-    \textbf{Example:} The National Resident Matching Program uses stable matching to ensure safety for medical graduates.
-\end{frame}
-
-\begin{frame}{Evaluating and Comparing Designs (Exercise 2 Placeholder)}
-    \textbf{Evaluating and Comparing Designs}\\[1em]
-    \begin{itemize}
-        \item Comparing different mechanisms involves looking at efficiency, stability, and fairness.
-        \item Trade-offs: Sometimes improving one aspect reduces another (e.g., efficiency vs. fairness).
-        \item Simulation and data analysis help evaluate outcomes before implementation.
-    \end{itemize}
-    \vspace{1em}
-    \textbf{Example:} Comparing school choice algorithms for different cities to find the best fit for local needs.
-\end{frame}
-
-\begin{frame}{Applications of Market Design}
-    \textbf{Real-World Applications}\\[1em]
-    \begin{itemize}
-        \item Labor markets (e.g., Medical Residencies).
-        \item School choice systems.
-        \item Kidney exchanges and organ donation networks.
-        \item Online advertising auctions.
-        \item Ride-sharing and gig economy platforms.
-    \end{itemize}
-    \vspace{1em}
-    \textbf{Case Study:} Kidney exchange programs use algorithms to maximize the number of transplants.
-\end{frame}
-
+% Slide 8: Conclusion
 \begin{frame}{Conclusion}
-    \textbf{Summary of Design Principles}\\[1em]
     \begin{itemize}
-        \item Effective design requires constant diagnosis and iteration.
-        \item AI tools can assist in simulating and verifying these market rules.
-        \item Collaboration between economists, engineers, and policymakers is essential.
-        \item Future directions: Using machine learning to optimize market rules and predict outcomes.
+        \item Effective market design requires diagnosis and iteration.
+        \item AI tools help simulate and verify market rules.
     \end{itemize}
-    \vspace{1em}
-    \textbf{Thank you for your attention! Questions?}
+    \vspace{0.4em}
+    \begin{block}{Takeaway}
+        Good design aligns incentives, improves participation, and reduces congestion.
+    \end{block}
+\end{frame}
+
+% Slide 9: Exercise 1 (Manual Workflow)
+\begin{frame}{Exercise 1: Manual Workflow}
+    \begin{itemize}
+        \item Collaborator manually updates "Diagnosing Market Failures" slide.
+        \item Follow GitHub workflow: branch, comment, pull request, merge.
+    \end{itemize}
+\end{frame}
+
+% Slide 10: Exercise 2 (AI Workflow)
+\begin{frame}{Exercise 2: AI Workflow}
+    \begin{itemize}
+        \item Collaborator uses AI agent to update "Evaluating and Comparing Designs" slide.
+        \item AI agent performs branch, comment, pull request, and merge.
+    \end{itemize}
 \end{frame}
 
 \end{document}
