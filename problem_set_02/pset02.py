@@ -1,6 +1,13 @@
 import random
 from collections import defaultdict, deque
 
+# ==========================================================
+# Problem Set 02: School Choice
+# Part 1: Market Setup
+# Part 2: Matching Mechanisms (DA, IA, TTC)
+# Part 3: Efficiency Analysis (N=1000)
+# ==========================================================
+
 STUDENTS = [f"i{k}" for k in range(1, 19)]
 SCHOOLS = ["s1", "s2", "s3"]
 CAP = {s: 6 for s in SCHOOLS}
@@ -11,6 +18,11 @@ def generate_market(rng):
     # school priorities: strict random ranking over students
     prios = {s: rng.sample(STUDENTS, k=len(STUDENTS)) for s in SCHOOLS}
     return prefs, prios
+
+
+# ==========================================================
+# Part 2: Matching mechanisms
+# ==========================================================
 
 def DA(prefs, prios):
     pr_rank = {s: {i: r for r, i in enumerate(prios[s])} for s in SCHOOLS}
@@ -147,6 +159,32 @@ def print_matching(title, match):
         print(f"{i} -> {match[i]}")
 
 
+def print_market(prefs, prios):
+    print("\nPart 1: Market Setup")
+    print("Student preferences:")
+    for i in STUDENTS:
+        print(f"{i}: {prefs[i]}")
+
+    print("\nSchool priorities:")
+    for s in SCHOOLS:
+        print(f"{s}: {prios[s]}")
+
+
+def run_all_mechanisms(prefs, prios):
+    return {
+        "DA": DA(prefs, prios),
+        "IA": IA(prefs, prios),
+        "TTC": TTC(prefs, prios),
+    }
+
+
+def print_mechanism_results(matches):
+    print("\nPart 2: Matching Mechanisms")
+    print_matching("DA matching result:", matches["DA"])
+    print_matching("IA matching result:", matches["IA"])
+    print_matching("TTC matching result:", matches["TTC"])
+
+
 def assigned_rank(prefs, student, school):
     # rank is 1-based (1 = top choice). If unmatched, use worst rank + 1.
     if school is None:
@@ -185,24 +223,17 @@ def print_efficiency_table(avg_ranks):
     print(f"\nInterpretation: lower is better, and {best} has the best (lowest) average rank in this simulation.")
 
 
-if __name__ == "__main__":
-    rng = random.Random(42)
+def run_problem_set(seed_market=42, seed_sim=2026, num_iterations=1000):
+    rng = random.Random(seed_market)
     prefs, prios = generate_market(rng)
-    da_match = DA(prefs, prios)
-    ia_match = IA(prefs, prios)
-    ttc_match = TTC(prefs, prios)
+    matches = run_all_mechanisms(prefs, prios)
 
-    print("Student preferences:")
-    for i in STUDENTS:
-        print(f"{i}: {prefs[i]}")
+    print_market(prefs, prios)
+    print_mechanism_results(matches)
 
-    print("\nSchool priorities:")
-    for s in SCHOOLS:
-        print(f"{s}: {prios[s]}")
-
-    print_matching("DA matching result:", da_match)
-    print_matching("IA matching result:", ia_match)
-    print_matching("TTC matching result:", ttc_match)
-
-    avg_ranks = run_efficiency_simulation(num_iterations=1000, seed=2026)
+    avg_ranks = run_efficiency_simulation(num_iterations=num_iterations, seed=seed_sim)
     print_efficiency_table(avg_ranks)
+
+
+if __name__ == "__main__":
+    run_problem_set(seed_market=42, seed_sim=2026, num_iterations=1000)
