@@ -40,6 +40,9 @@ if (!supabaseUrl || !supabaseAnonKey) {
   );
 }
 
+const SUPABASE_URL: string = supabaseUrl;
+const SUPABASE_ANON_KEY: string = supabaseAnonKey;
+
 export default function SessionPageClient() {
   const params = useParams<{ code: string }>();
   const sessionCode = (params.code ?? "").toUpperCase();
@@ -52,7 +55,7 @@ export default function SessionPageClient() {
 
   const supabaseNoStore = useMemo(
     () =>
-      createClient(supabaseUrl, supabaseAnonKey, {
+      createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
         global: {
           fetch: (input: RequestInfo | URL, init?: RequestInit) =>
             fetch(input, {
