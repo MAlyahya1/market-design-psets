@@ -94,14 +94,17 @@ export default function SessionPageClient() {
         return;
       }
 
-      const { data: foundParticipants } = await supabaseNoStore
+      const { data: foundParticipants, error: participantsError } = await supabaseNoStore
         .from("participants")
         .select("id, name, side")
-        .eq("session_id", foundSession.id)
-        .order("created_at", { ascending: true });
+        .eq("session_id", foundSession.id);
 
       if (ignore) {
         return;
+      }
+
+      if (participantsError) {
+        console.error("Error fetching participants:", participantsError);
       }
 
       const { data: foundPreferences } = await supabaseNoStore
