@@ -52,6 +52,7 @@ export default function SessionPageClient() {
   const [preferences, setPreferences] = useState<PreferenceRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [showRankingResults, setShowRankingResults] = useState(false);
 
   const supabaseNoStore = useMemo(
     () =>
@@ -368,6 +369,16 @@ export default function SessionPageClient() {
 
         {session.status === "results" ? (
           <div className="mt-6 space-y-4">
+            <button
+              type="button"
+              onClick={() => setShowRankingResults((previous) => !previous)}
+              className="inline-flex h-11 items-center justify-center rounded-lg bg-zinc-900 px-6 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+            >
+              {showRankingResults ? "Hide Ranking Results" : "Show Ranking Results"}
+            </button>
+
+            {showRankingResults ? (
+              <>
             <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Results</h2>
 
             {comparisonNote ? (
@@ -468,6 +479,8 @@ export default function SessionPageClient() {
                 )}
               </div>
             </div>
+              </>
+            ) : null}
           </div>
         ) : null}
       </section>
