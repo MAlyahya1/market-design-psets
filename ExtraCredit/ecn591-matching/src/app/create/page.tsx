@@ -128,7 +128,12 @@ export default function CreateSessionPage() {
               Ask participants to enter their name, session code, and side using this link:
             </p>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              <Link href={joinLink} className="font-medium text-zinc-900 underline dark:text-zinc-100">
+              <Link
+                href={joinLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-zinc-900 underline dark:text-zinc-100"
+              >
                 {joinLink}
               </Link>
             </p>
@@ -139,7 +144,12 @@ export default function CreateSessionPage() {
               Use this link to view the session, participants, submission progress, and results:
             </p>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              <Link href={shareableLink} className="font-medium text-zinc-900 underline dark:text-zinc-100">
+              <Link
+                href={shareableLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-zinc-900 underline dark:text-zinc-100"
+              >
                 {shareableLink}
               </Link>
             </p>
