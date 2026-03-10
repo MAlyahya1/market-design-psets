@@ -31,6 +31,8 @@ export default function CreateSessionPage() {
     [sessionCode],
   );
 
+  const joinLink = useMemo(() => (sessionCode ? `/join?code=${sessionCode}` : ""), [sessionCode]);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setErrorMessage(null);
@@ -116,13 +118,27 @@ export default function CreateSessionPage() {
         {sessionCode ? (
           <div className="mt-6 rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/40">
             <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-              Session created
+              Session created successfully
             </p>
-            <p className="mt-1 text-lg font-semibold tracking-wide text-zinc-900 dark:text-zinc-100">
-              {sessionCode}
+            <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">
+              This is your session code: <span className="font-semibold tracking-wide text-zinc-900 dark:text-zinc-100">{sessionCode}</span>
+            </p>
+            <p className="mt-4 text-sm font-medium text-zinc-900 dark:text-zinc-100">To join:</p>
+            <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
+              Ask participants to enter their name, session code, and side using this link:
             </p>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-              Share link:{" "}
+              <Link href={joinLink} className="font-medium text-zinc-900 underline dark:text-zinc-100">
+                {joinLink}
+              </Link>
+            </p>
+            <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">Then click "Join".</p>
+
+            <p className="mt-4 text-sm font-medium text-zinc-900 dark:text-zinc-100">Organizer session page:</p>
+            <p className="mt-1 text-sm text-zinc-700 dark:text-zinc-300">
+              Use this link to view the session, participants, submission progress, and results:
+            </p>
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
               <Link href={shareableLink} className="font-medium text-zinc-900 underline dark:text-zinc-100">
                 {shareableLink}
               </Link>
