@@ -92,9 +92,9 @@ export default function RankingPage() {
       .select("id, name, side")
       .eq("session_id", foundSession.id)
       .neq("side", foundParticipant.side)
-      .order("created_at", { ascending: true });
 
     if (opponentsError) {
+      console.error("Error fetching opponents:", opponentsError);
       setErrorMessage("Could not load ranking options. Please try again.");
       setIsLoading(false);
       return;
